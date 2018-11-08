@@ -17,9 +17,17 @@ server.bind(PORT, HOST);
 
 // Client
 const client = dgram.createSocket('udp4');
+const msg = Buffer.from('Coding as a crazy dev');
 
-client.send('Coding as a crazy dev', PORT, HOST, (err) => {
+client.send(msg, 0, msg.length, PORT, HOST, (err) => {
     if (err) throw err;
     console.log('UPD Message Sent!');
     client.close();
 });
+
+// Or send multiple msgs
+// client.send([], PORT, HOST, (err) => {
+//     if (err) throw err;
+//     console.log('UPD Message Sent!');
+//     client.close();
+// });
